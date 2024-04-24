@@ -1,0 +1,10 @@
+{
+  "executionEnvironments": [
+   {"root": "./"}
+  ],
+
+  "ignore": [
+    "./*/models.py",
+    "./*/views.py",
+  ]
+}
