@@ -22,7 +22,7 @@ import { RouterLink } from 'vue-router'
         <td>
           <div class="form-control ml-3">
           <label class="cursor-pointer label">
-            <input type="checkbox" checked="checked" class="checkbox checkbox-success" />
+            <input type="checkbox" class="checkbox checkbox-success" />
           </label>
           </div>
         </td>
@@ -37,7 +37,7 @@ import { RouterLink } from 'vue-router'
         <td>
           <div class="form-control ml-3">
           <label class="cursor-pointer label">
-            <input type="checkbox" checked="checked" class="checkbox checkbox-success" />
+            <input type="checkbox" class="checkbox checkbox-success" />
           </label>
           </div>
         </td>
@@ -55,7 +55,7 @@ import { RouterLink } from 'vue-router'
         <td>
           <div class="form-control ml-3">
           <label class="cursor-pointer label">
-            <input type="checkbox" checked="checked" class="checkbox checkbox-success" />
+            <input type="checkbox" class="checkbox checkbox-success" />
           </label>
           </div>
         </td>
