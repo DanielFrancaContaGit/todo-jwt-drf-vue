@@ -1,4 +1,5 @@
 <script setup lang='ts'>
+import router from '@/router';
 import { ref } from 'vue';
 import { RouterLink } from 'vue-router'
 
@@ -17,9 +18,19 @@ async function formSubmit() {
     method: 'POST',
     body
   })
-  .then((response) => response.json())
+  .then((response) => {
+    if(response.ok) {
+      return response.json()
+    } else {
+      return response.ok
+    }
+  })
   .then((data) => {
-    console.log(data)
+    if(data) {
+      return router.push('/profile')
+    } else {
+      alert('login invalido')
+    }
   })
 }
 </script>
