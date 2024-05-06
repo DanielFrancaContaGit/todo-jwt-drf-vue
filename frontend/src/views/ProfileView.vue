@@ -1,6 +1,36 @@
 <script setup lang='ts'>
+import { ref } from 'vue';
 import { RouterLink } from 'vue-router'
 
+const todoContent = ref('')
+const acssesToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE1MDUwODc3LCJpYXQiOjE3MTQ5NjQ0NzcsImp0aSI6IjdlMDYyZTRmMzE0MzRkODg5MWQ4M2U4NjAwNWMwNmE3IiwidXNlcl9pZCI6MX0.8nWAEG6Ww7cFGiCtzS8O5F8OhyWcqMyfsaz5pri2SaQ"
+
+const url = new URL("http://127.0.0.1:8000/todo/list/")
+
+async function getTodoList() {
+  const ownerId = '1'
+
+  const body = new FormData()
+
+  const headers = new Headers()
+
+  headers.set('Authorization',  "Bearer " + acssesToken)
+
+  body.set('id', ownerId)
+
+  await fetch(url, {
+    method: "GET",
+    
+    headers
+  })
+  .then((response) => {
+    console.log(response.ok)
+    console.log(response.json())
+  })
+
+}
+
+getTodoList()
 </script>
 
 <template>
@@ -16,7 +46,7 @@ import { RouterLink } from 'vue-router'
     <thead>
       <tr>
         <th></th>
-        <th>Content</th>
+        <th>Content</th>  
         <th>Complete</th>
         <th>Ações</th>
       </tr>
