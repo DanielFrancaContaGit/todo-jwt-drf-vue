@@ -5,6 +5,12 @@ import { RouterLink } from 'vue-router'
 
 <template>
   <h1 class="text-3xl font-bold underline mb-8">Seja bem vindo Usuario</h1>
+  <form class="flex justify-center w-1/2">
+    <label class="input input-bordered border-black flex items-center gap-2 w-2/3">
+      <input placeholder="Nova tarefa" class="grow" type="text">
+    </label>
+    <button type="submit" class="btn bg-green-600 ml-3">Criat nova tarefa</button>
+  </form>
 
   <table class="table w-1/2 my-8">
     <thead>
