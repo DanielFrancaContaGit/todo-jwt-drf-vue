@@ -5,7 +5,8 @@ app_name = "todo"
 
 urlpatterns = [
     path("create/", ListCreateTodoView.as_view(), name="todo_create"),
-    path("list/", ListCreateTodoView.as_view(), name="todo_list"),
+    path("all/", ListCreateTodoView.as_view(), name="todo_list_all"),
+    path("list/<int:pk>/", ListCreateTodoView.as_view(), name="todo_list"),
     path(
         "update/<int:pk>/", RetriveUpdateDestroyTodoview.as_view(), name="todo_update"
     ),

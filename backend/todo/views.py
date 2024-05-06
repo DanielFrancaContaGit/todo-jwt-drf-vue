@@ -8,8 +8,15 @@ from .serializers import TodoSerializer
 class ListCreateTodoView(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
-    queryset = Todo.objects.all()
     serializer_class = TodoSerializer
+
+    def get_queryset(self):
+        if(self.kwargs != {}):
+            owner_id = self.kwargs["pk"]
+            todo = Todo.objects.filter(owner=owner_id)
+            return todo
+        else:
+            return Todo.objects.all()    
 
 
 class RetriveUpdateDestroyTodoview(generics.RetrieveUpdateDestroyAPIView):
