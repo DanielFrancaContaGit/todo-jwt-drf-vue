@@ -1,10 +1,14 @@
 <script setup lang='ts'>
-import router from '@/router';
 import { ref } from 'vue';
 import { RouterLink } from 'vue-router'
+import jwtDecode  from 'jwt-decode'
+import { useAuthStore } from '../stores/authentication'
+import router from '@/router';
 
 const password = ref('')
 const username = ref('')
+
+const { setToken, token } = useAuthStore()
 
 async function formSubmit() {
   const body = new FormData()
@@ -27,6 +31,7 @@ async function formSubmit() {
   })
   .then((data) => {
     if(data) {
+      setToken(data.access)
       return router.push('/profile')
     } else {
       alert('login invalido')
@@ -49,7 +54,7 @@ async function formSubmit() {
     </label>
     <button class="btn w-full bg-blue-600" type="submit">Login</button>
   </form>
-
+  
   <nav class="w-64 flex justify-between mt-8">
     <RouterLink class="btn btn-outline" to="/">Home</RouterLink>
     <RouterLink class="btn btn-outline" to="/signup">Signup</RouterLink>

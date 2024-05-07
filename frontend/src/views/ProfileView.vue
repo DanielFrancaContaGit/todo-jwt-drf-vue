@@ -1,30 +1,30 @@
 <script setup lang='ts'>
 import router from '@/router';
-import { ref } from 'vue';
+import { ref, type Ref } from 'vue';
 import { RouterLink } from 'vue-router'
+import { useAuthStore } from '../stores/authentication'
+
+interface Todo {
+  id: number,
+  content: string,
+  completed: boolean,
+  owner: number,
+}
+
+const { token, userId } = useAuthStore()
 
 const todoContent = ref('')
-const todoList = ref(false)
-const acssesToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE1MDk2NzAzLCJpYXQiOjE3MTUwMTAzMDMsImp0aSI6IjA0ODBiNWQzNzA2NDQ0ZTJhMjc1NDZiMjBhMTBlNThhIiwidXNlcl9pZCI6MX0.u93V80ctYF33PXzbr_Zv3hUJtQJcyHaDIxMBQvY_0AY"
+const todoList: Ref<Todo[]> = ref([])
 
-// const url = new URL("http://127.0.0.1:8000/todo/all/")
-const url = new URL("http://127.0.0.1:8000/todo/list/1/")
-
+const url = new URL("http://127.0.0.1:8000/todo/list/" + userId +"/")
 
 async function getTodoList() {
-  const ownerId = '1'
-
-  const body = new FormData()
-
   const headers = new Headers()
 
-  headers.set('Authorization',  "Bearer " + acssesToken)
-
-  body.set('id', ownerId)
+  headers.set('Authorization',  "Bearer " + token)
 
   await fetch(url, {
     method: "GET",
-    
     headers
   })
   .then((response) => {
@@ -47,11 +47,11 @@ function createNewTodo() {
 
   const url = new URL("http://127.0.0.1:8000/todo/create/")
 
-  headers.set('Authorization',  "Bearer " + acssesToken)
+  headers.set('Authorization',  "Bearer " + token)
 
   body.set("content", todoContent.value)
   body.set("completed", "false")
-  body.set("owner", '1')
+  body.set("owner", String(userId))
 
   fetch(url, {
     method: "POST",
@@ -59,7 +59,6 @@ function createNewTodo() {
     body,
   })
   .then((request) => {
-
     getTodoList()
   })
 }

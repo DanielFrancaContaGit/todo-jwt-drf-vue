@@ -2,10 +2,13 @@
 import router from '@/router';
 import { ref } from 'vue';
 import { RouterLink } from 'vue-router'
+import { useAuthStore } from '../stores/authentication'
 
 const username = ref('')
 const password = ref('')
 const email = ref('')
+
+const { token, userId } = useAuthStore()
 
 async function formSubmit() {
    const body = new FormData
@@ -41,6 +44,7 @@ async function formSubmit() {
 </script>
 
 <template>
+  
   <h1 class="text-3xl font-bold underline">Signup Page</h1>
   <form v-on:submit.prevent="formSubmit" class="my-8 flex flex-col justify-between">
 
