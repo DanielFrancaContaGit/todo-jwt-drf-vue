@@ -73,20 +73,22 @@ getTodoList()
 </script>
 
 <template>
+  <section class="w-screen flex justify-center items-center flex-col">
+
   <h1 class="text-3xl font-bold underline mb-8 mt-10">Seja bem vindo Usuario</h1>
-  <form v-on:submit.prevent="createNewTodo" class="flex justify-center w-auto">
-    <label class="input input-bordered border-black flex items-center gap-2 w-2/3">
+  <form v-on:submit.prevent="createNewTodo" class="flex justify-center items-center flex-wrap">
+    <label class="input input-bordered border-black flex items-center gap-2 w-2/3 ">
       <input v-model="todoContent" placeholder="Nova tarefa" class="grow" type="text">
     </label>
-    <button type="submit" class="btn bg-green-600 ml-3">Criat nova tarefa</button>
+    <button type="submit" class="btn bg-green-600 mt-3 md:btn-wide">Criat nova tarefa</button>
   </form>
-  <table class="table w-auto my-8 bg-slate-200">
+  <table class="table w-auto max-w-full my-8 bg-slate-200">
     <thead>
       <tr>
         <th></th>
         <th>Content</th>  
         <th>Complete</th>
-        <th>Ações</th>
+        <th class="hidden md:block">Ações</th>
       </tr>
     </thead>
     <tbody v-for="(todo, index) in todoList" :key="todo.id">
@@ -100,7 +102,7 @@ getTodoList()
           </label>
           </div>
         </td>
-        <td class="flex justify-between w-52">
+        <td class="hidden md:flex justify-between w-52">
           <button class="btn btn-warning">Editar</button>
           <button class="btn btn-error">Deletar</button>
         </td>
@@ -112,4 +114,6 @@ getTodoList()
   <nav class="flex justify-between mt-4 mb-10">
     <button class="btn btn-outline" v-on:click="logout">Logout</button>
   </nav>
+</section>
+
 </template>
