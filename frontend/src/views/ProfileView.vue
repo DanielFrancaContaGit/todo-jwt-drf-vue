@@ -1,5 +1,4 @@
 <script setup lang='ts'>
-import router from '@/router';
 import { ref, type Ref } from 'vue';
 import { RouterLink } from 'vue-router'
 import { useAuthStore } from '../stores/authentication'
@@ -67,7 +66,7 @@ getTodoList()
 </script>
 
 <template>
-  <h1 class="text-3xl font-bold underline mb-8">Seja bem vindo Usuario</h1>
+  <h1 class="text-3xl font-bold underline mb-8 mt-10">Seja bem vindo Usuario</h1>
   <form v-on:submit.prevent="createNewTodo" class="flex justify-center w-1/2">
     <label class="input input-bordered border-black flex items-center gap-2 w-2/3">
       <input v-model="todoContent" placeholder="Nova tarefa" class="grow" type="text">
@@ -103,7 +102,7 @@ getTodoList()
     
   </table>
 
-  <nav class="w-64 flex justify-between mt-8">
+  <nav class="w-64 flex justify-between mt-8 mb-10">
     <RouterLink class="btn btn-outline" to="/">Home</RouterLink>
     <RouterLink class="btn btn-outline" to="/signup">Signup</RouterLink>
     <RouterLink class="btn btn-outline" to="/profile">Profile</RouterLink>
