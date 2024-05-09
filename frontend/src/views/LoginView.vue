@@ -55,9 +55,8 @@ async function formSubmit() {
     <button class="btn w-full bg-blue-600" type="submit">Login</button>
   </form>
   
-  <nav class="w-64 flex justify-between mt-8">
+  <nav class="w-44 flex justify-between mt-4">
     <RouterLink class="btn btn-outline" to="/">Home</RouterLink>
     <RouterLink class="btn btn-outline" to="/signup">Signup</RouterLink>
-    <RouterLink class="btn btn-outline" to="/profile">Profile</RouterLink>
   </nav>
 </template>

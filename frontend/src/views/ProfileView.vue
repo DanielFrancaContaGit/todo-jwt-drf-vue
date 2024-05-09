@@ -2,6 +2,8 @@
 import { ref, type Ref } from 'vue';
 import { RouterLink } from 'vue-router'
 import { useAuthStore } from '../stores/authentication'
+import router from '@/router';
+
 
 interface Todo {
   id: number,
@@ -10,7 +12,7 @@ interface Todo {
   owner: number,
 }
 
-const { token, userId } = useAuthStore()
+const { token, userId, cleanToken } = useAuthStore()
 
 const todoContent = ref('')
 const todoList: Ref<Todo[]> = ref([])
@@ -62,18 +64,23 @@ function createNewTodo() {
   })
 }
 
+function logout() {
+  cleanToken()
+  router.push('/')
+}
+
 getTodoList()
 </script>
 
 <template>
   <h1 class="text-3xl font-bold underline mb-8 mt-10">Seja bem vindo Usuario</h1>
-  <form v-on:submit.prevent="createNewTodo" class="flex justify-center w-1/2">
+  <form v-on:submit.prevent="createNewTodo" class="flex justify-center w-auto">
     <label class="input input-bordered border-black flex items-center gap-2 w-2/3">
       <input v-model="todoContent" placeholder="Nova tarefa" class="grow" type="text">
     </label>
     <button type="submit" class="btn bg-green-600 ml-3">Criat nova tarefa</button>
   </form>
-  <table class="table w-1/2 my-8">
+  <table class="table w-auto my-8 bg-slate-200">
     <thead>
       <tr>
         <th></th>
@@ -102,9 +109,7 @@ getTodoList()
     
   </table>
 
-  <nav class="w-64 flex justify-between mt-8 mb-10">
-    <RouterLink class="btn btn-outline" to="/">Home</RouterLink>
-    <RouterLink class="btn btn-outline" to="/signup">Signup</RouterLink>
-    <RouterLink class="btn btn-outline" to="/profile">Profile</RouterLink>
+  <nav class="flex justify-between mt-4 mb-10">
+    <button class="btn btn-outline" v-on:click="logout">Logout</button>
   </nav>
 </template>
